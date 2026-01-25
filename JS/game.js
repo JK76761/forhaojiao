@@ -195,4 +195,7 @@ function checkExit() {
 /* =====================
    Init
 ===================== */
-renderMaze();
+document.addEventListener("DOMContentLoaded", () => {
+  renderMaze();
+});
+
