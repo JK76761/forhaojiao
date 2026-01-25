@@ -1,4 +1,4 @@
-import { MAZE_MAP } from "./maze.js";
+import { MAZES } from "./maze.js";
 
 /* =====================
    Game State
@@ -10,22 +10,29 @@ const GAME_STATE = {
 };
 
 let currentState = GAME_STATE.IDLE;
+let currentMaze = null;
 let playerPosition = { x: 0, y: 0 };
 let nickname = "";
 let startTime = null;
 let timerInterval = null;
 
 /* =====================
-   DOM (나중에 초기화)
+   DOM
 ===================== */
-let mazeElement, timeDisplay, startBtn, resetBtn, nicknameInput;
+let mazeElement;
+let timeDisplay;
+let bestDisplay;
+let startBtn;
+let resetBtn;
+let nicknameInput;
 
 /* =====================
-   Init (DOM 준비 후)
+   Init
 ===================== */
 document.addEventListener("DOMContentLoaded", () => {
   mazeElement = document.getElementById("maze");
   timeDisplay = document.getElementById("time");
+  bestDisplay = document.getElementById("best");
   startBtn = document.getElementById("startBtn");
   resetBtn = document.getElementById("resetBtn");
   nicknameInput = document.getElementById("nickname");
@@ -33,16 +40,23 @@ document.addEventListener("DOMContentLoaded", () => {
   startBtn.addEventListener("click", startGame);
   resetBtn.addEventListener("click", resetGame);
 
-  renderMaze(); // ⭐ 여기서 최초 렌더
+  loadBestTime();
+  pickRandomMaze();
+  renderMaze();
 });
 
 /* =====================
-   Maze Render
+   Maze
 ===================== */
+function pickRandomMaze() {
+  currentMaze =
+    MAZES[Math.floor(Math.random() * MAZES.length)];
+}
+
 function renderMaze() {
   mazeElement.innerHTML = "";
 
-  MAZE_MAP.forEach((row, y) => {
+  currentMaze.forEach((row, y) => {
     row.forEach((cell, x) => {
       const div = document.createElement("div");
       div.classList.add("cell");
@@ -64,7 +78,10 @@ function updatePlayerPosition() {
   const cells = document.querySelectorAll(".cell");
   cells.forEach(c => c.classList.remove("player"));
 
-  const index = playerPosition.y * MAZE_MAP[0].length + playerPosition.x;
+  const index =
+    playerPosition.y * currentMaze[0].length +
+    playerPosition.x;
+
   cells[index].classList.add("player");
 }
 
@@ -79,7 +96,7 @@ const DIRECTIONS = {
 };
 
 function canMoveTo(x, y) {
-  return MAZE_MAP[y][x] !== 1;
+  return currentMaze[y][x] !== 1;
 }
 
 function movePlayer(direction) {
@@ -118,13 +135,22 @@ document.addEventListener("keydown", e => {
   }
 });
 
+document
+  .querySelectorAll(".mobile-controls button")
+  .forEach(btn =>
+    btn.addEventListener("click", () =>
+      movePlayer(btn.dataset.dir)
+    )
+  );
+
 /* =====================
    Timer
 ===================== */
 function startTimer() {
   startTime = Date.now();
   timerInterval = setInterval(() => {
-    const t = ((Date.now() - startTime) / 1000).toFixed(1);
+    const t =
+      ((Date.now() - startTime) / 1000).toFixed(1);
     timeDisplay.textContent = `${t}s`;
   }, 100);
 }
@@ -136,6 +162,25 @@ function stopTimer() {
 function resetTimer() {
   stopTimer();
   timeDisplay.textContent = "0.0s";
+}
+
+/* =====================
+   Best Time
+===================== */
+function saveBestTime(time) {
+  const best = localStorage.getItem("bestTime");
+
+  if (!best || time < best) {
+    localStorage.setItem("bestTime", time);
+    bestDisplay.textContent = `${time}s`;
+  }
+}
+
+function loadBestTime() {
+  const best = localStorage.getItem("bestTime");
+  if (best) {
+    bestDisplay.textContent = `${best}s`;
+  }
 }
 
 /* =====================
@@ -153,27 +198,40 @@ function startGame() {
   nicknameInput.disabled = true;
   startBtn.disabled = true;
 
-  renderMaze();     // ⭐ 핵심
+  pickRandomMaze();
+  renderMaze();
   resetTimer();
   startTimer();
-
-  alert("Game Started! Use arrow keys 👉");
 }
 
 function resetGame() {
   currentState = GAME_STATE.IDLE;
+  nickname = "";
+
   nicknameInput.disabled = false;
   startBtn.disabled = false;
   nicknameInput.value = "";
 
+  pickRandomMaze();
   renderMaze();
   resetTimer();
 }
 
 function checkExit() {
-  if (MAZE_MAP[playerPosition.y][playerPosition.x] === "E") {
+  if (
+    currentMaze[playerPosition.y][playerPosition.x] ===
+    "E"
+  ) {
     currentState = GAME_STATE.FINISHED;
     stopTimer();
-    alert(`🎉 ${nickname}, escaped!`);
+
+    const time =
+      ((Date.now() - startTime) / 1000).toFixed(1);
+
+    saveBestTime(time);
+
+    alert(
+      `🎉 ${nickname}, escaped in ${time}s!`
+    );
   }
 }
