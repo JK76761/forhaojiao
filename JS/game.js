@@ -28,6 +28,27 @@ const nicknameInput = document.getElementById("nickname");
 /* =====================
    Maze Render
 ===================== */
+
+startBtn.onclick = () => {
+  if (!nicknameInput.value.trim()) {
+    alert("Enter nickname");
+    return;
+  }
+
+  nickname = nicknameInput.value.trim();
+  currentState = GAME_STATE.PLAYING;
+
+  nicknameInput.disabled = true;
+  startBtn.disabled = true;
+
+  renderMaze();   // ⭐ 중요
+  resetTimer();
+  startTimer();
+
+  alert("Game Started! Move RIGHT 👉 first");
+};
+
+
 function renderMaze() {
   mazeElement.innerHTML = "";
 
