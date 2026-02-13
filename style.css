@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  color: white;
+  background: #0f0f0f;
+  color: #e5e5e5;
+  font-family: 'Playfair Display', serif;
   text-align: center;
 }
 
@@ -11,82 +12,64 @@ section {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative;
+  padding: 60px 20px;
 }
 
 .hidden {
   display: none;
 }
 
-/* Landing 배경 */
-#landing {
-  background: url("assets/photo1.jpg") center/cover no-repeat;
+.gold {
+  color: #d4af37;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
-#final {
-  background: url("assets/photo4.jpg") center/cover no-repeat;
-}
-
-.overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 105, 180, 0.4);
-}
-
-.content {
-  position: relative;
-  z-index: 2;
+h1 {
+  font-size: 3rem;
+  margin: 20px 0;
 }
 
 button {
-  padding: 12px 25px;
-  border: none;
-  border-radius: 25px;
-  background: white;
-  color: hotpink;
-  font-weight: bold;
+  padding: 12px 30px;
+  border: 1px solid #d4af37;
+  background: transparent;
+  color: #d4af37;
   cursor: pointer;
-  transition: 0.3s;
+  font-family: inherit;
+  transition: 0.4s;
 }
 
 button:hover {
-  transform: scale(1.1);
+  background: #d4af37;
+  color: black;
 }
 
-/* Timeline */
-#timeline {
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  padding: 50px 20px;
-}
-
-.card {
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(5px);
-  border-radius: 20px;
-  margin: 20px;
-  padding: 20px;
-  width: 80%;
-  max-width: 400px;
-}
-
-.card img {
-  width: 100%;
-  border-radius: 15px;
-}
-
-.card.big {
-  max-width: 600px;
-}
-
-/* Fade animation */
-.fade {
+/* Gallery */
+.photo-section {
+  margin-bottom: 60px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: 1s;
+  transform: translateY(30px);
+  transition: 1.5s ease;
 }
 
-.fade.show {
+.photo-section img {
+  width: 80%;
+  max-width: 500px;
+  border-radius: 4px;
+}
+
+.photo-section.large img {
+  max-width: 700px;
+}
+
+.caption {
+  margin-top: 15px;
+  font-size: 1.2rem;
+  color: #d4af37;
+}
+
+.photo-section.show {
   opacity: 1;
   transform: translateY(0);
 }

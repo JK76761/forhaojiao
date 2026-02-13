@@ -3,43 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For My Yaobo 💝</title>
+  <title>Private Invitation</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- 💌 Landing -->
+<!-- Landing -->
 <section id="landing">
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Happy Valentine's Day 💝</h1>
-    <button onclick="openLetter()">Love HaoJiao!!</button>
+  <div class="center">
+    <p class="gold">A Private Invitation</p>
+    <h1>Valentine's Evening</h1>
+    <p>For The Most Beautiful Woman In My Life</p>
+    <button onclick="enterExperience()">Enter</button>
   </div>
 </section>
 
-<!-- 🌸 Timeline -->
-<section id="timeline" class="hidden">
-  <h1>Wuri yaobo✨</h1>
-
-  <div class="card fade">
-    <img src="11c190c225661561c93f62f2e2d60b8c.JPG">
-    <p>Jinja pretty yaobo</p>
+<!-- Gallery -->
+<section id="gallery" class="hidden">
+  <div class="photo-section">
+    <img src="assets/photo1.jpg">
+    <div class="caption">The Beginning</div>
   </div>
 
- 
+  <div class="photo-section">
+    <img src="assets/photo2.jpg">
+    <div class="caption">Moments We Shared</div>
+  </div>
 
-  <button onclick="goToFinal()">Next 💌</button>
+  <div class="photo-section large">
+    <img src="assets/photo3.jpg">
+    <div class="caption">My Favorite Memory</div>
+  </div>
+
+  <button onclick="finalReveal()">Continue</button>
 </section>
 
-<!-- 💖 Final -->
+<!-- Final -->
 <section id="final" class="hidden">
-  <div class="overlay"></div>
-  <div class="content">
-    <h1>Marry with me</h1>
-    <p>I love you</p>
-    <p>Jio loves Jiao</p>
-    <p>Forever Mode: Activated 💍</p>
-    <button onclick="heartExplosion()">Stay With Me Forever?</button>
+  <div class="center">
+    <p class="gold">System Status</p>
+    <h1>Heart Connected</h1>
+    <p>Forever Mode: Activated</p>
+    <button onclick="proposal()">Will You Stay By My Side?</button>
   </div>
 </section>
 

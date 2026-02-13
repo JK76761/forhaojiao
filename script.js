@@ -1,25 +1,23 @@
-
-function openLetter() {
+function enterExperience() {
   document.getElementById("landing").classList.add("hidden");
-  document.getElementById("timeline").classList.remove("hidden");
-  revealCards();
+  document.getElementById("gallery").classList.remove("hidden");
+  revealPhotos();
 }
 
-function goToFinal() {
-  document.getElementById("timeline").classList.add("hidden");
+function revealPhotos() {
+  const sections = document.querySelectorAll(".photo-section");
+  sections.forEach((sec, index) => {
+    setTimeout(() => {
+      sec.classList.add("show");
+    }, index * 1200);
+  });
+}
+
+function finalReveal() {
+  document.getElementById("gallery").classList.add("hidden");
   document.getElementById("final").classList.remove("hidden");
 }
 
-function heartExplosion() {
-  alert("I love you more than you love me ❤️");
-}
-
-/* 카드 순차 fade */
-function revealCards() {
-  const cards = document.querySelectorAll(".fade");
-  cards.forEach((card, index) => {
-    setTimeout(() => {
-      card.classList.add("show");
-    }, index * 800);
-  });
+function proposal() {
+  alert("Every day with you feels like a five-star experience. I love you.");
 }
