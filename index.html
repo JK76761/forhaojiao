@@ -3,48 +3,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Private Invitation</title>
+  <title>Valentine's Evening</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- Landing -->
-<section id="landing">
+<!-- 🥂 Hero Section -->
+<section class="hero">
   <div class="center">
-    <p class="gold">A Private Invitation</p>
+    <p class="gold small">A Private Invitation</p>
     <h1>Valentine's Evening</h1>
-    <p>For The Most Beautiful Woman In My Life</p>
-    <button onclick="enterExperience()">Enter</button>
+    <p class="subtitle">An Experience Crafted Just For You</p>
+    <button onclick="scrollToSection('welcome')">Enter</button>
   </div>
 </section>
 
-<!-- Gallery -->
-<section id="gallery" class="hidden">
-  <div class="photo-section">
-    <img src="47fc119f6e96a14894680a0704d05790.JPG">
-    <div class="caption">The Beginning</div>
+<!-- 🍷 Welcome Note -->
+<section id="welcome" class="section dark">
+  <div class="content-narrow">
+    <p class="gold">Welcome Note</p>
+    <h2>To The Woman Who Changed My World</h2>
+    <p>
+      Tonight is not just another evening.  
+      It is a celebration of the laughter we shared,  
+      the quiet moments we held,  
+      and the future we are building together.
+    </p>
   </div>
-
-  <div class="photo-section">
-    <img src="11c190c225661561c93f62f2e2d60b8c.JPG">
-    <div class="caption">Moments We Shared</div>
-  </div>
-
-  <div class="photo-section large">
-    <img src="c831035bc08090650514f1955b8f0a80.JPG">
-    <div class="caption">My Favorite Memory</div>
-  </div>
-
-  <button onclick="finalReveal()">Continue</button>
 </section>
 
-<!-- Final -->
-<section id="final" class="hidden">
-  <div class="center">
-    <p class="gold">System Status</p>
-    <h1>Heart Connected</h1>
-    <p>Forever Mode: Activated</p>
+<!-- 🍽 Evening Program -->
+<section class="section light">
+  <div class="content-narrow">
+    <p class="gold">Evening Program</p>
+    <div class="program">
+      <div>
+        <h3>Course I</h3>
+        <p>The Beginning</p>
+      </div>
+      <div>
+        <h3>Course II</h3>
+        <p>Moments We Shared</p>
+      </div>
+      <div>
+        <h3>Course III</h3>
+        <p>My Favorite Memory</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 📸 Gallery -->
+<section class="section dark gallery">
+  <img src="11c190c225661561c93f62f2e2d60b8c.JPG">
+  <img src="47fc119f6e96a14894680a0704d05790.JPG">
+  <img src="c831035bc08090650514f1955b8f0a80.JPG">
+</section>
+
+<!-- 💎 Final -->
+<section class="section final" id="final">
+  <div class="content-narrow">
+    <p class="gold">Final Course</p>
+    <h2>Forever</h2>
+    <p>
+      Heart Connected.  
+      Forever Mode Activated.
+    </p>
     <button onclick="proposal()">Will You Stay By My Side?</button>
   </div>
 </section>
